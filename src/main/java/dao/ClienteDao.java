@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.entity.Cliente;
+import model.entity.Compra;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -74,5 +75,11 @@ public class ClienteDao implements Serializable{
 		}
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Cliente ClienteCompra(Cliente cliente, List<Compra> compras) throws Exception {
+		cliente.setCompralist(compras);
+		return dao.adiciona(cliente);
+		
+	}
 
 }
