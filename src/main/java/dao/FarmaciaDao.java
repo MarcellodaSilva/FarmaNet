@@ -22,6 +22,7 @@ public class FarmaciaDao implements Serializable{
 	private EntityManager manager; 
 	private Dao<Farmacia> dao;
 	
+	
 	public FarmaciaDao() {}
 
 	public FarmaciaDao(EntityManager manager){

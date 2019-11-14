@@ -13,6 +13,8 @@ import javax.persistence.Query;
 
 import exception.ValidacaoException;
 import model.entity.Carrinho;
+import model.entity.Estoque;
+import model.entity.Historico;
 import model.entity.Produto;
 
 @Stateless
@@ -86,6 +88,15 @@ public class CarrinhoDao implements Serializable{
 		if(modificados > 0) return true;
 		else return false;
 	}
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Carrinho CarrinhoEstoque (Carrinho t , List<Estoque> estoque) throws Exception {
+		t.setEstoque(estoque);
+		return dao.adiciona(t);
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Carrinho CarrinhoHistorico(Carrinho t, Historico historico) throws Exception {
+		t.setHistorico(historico);
+		return dao.adiciona(t);
+	}
 
 }

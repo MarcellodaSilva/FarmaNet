@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.entity.Cliente;
 import model.entity.EnderecoCliente;
 
 @Stateless
@@ -26,7 +27,7 @@ public class EnderecoClienteDao implements Serializable{
 	public EnderecoClienteDao(EntityManager manager) {
 		dao = new Dao<EnderecoCliente>(manager, EnderecoCliente.class);
 	}
-	
+
 	@PostConstruct
 	private void initDao() {
 		this.dao = new Dao<EnderecoCliente>(manager, EnderecoCliente.class);
@@ -66,5 +67,11 @@ public class EnderecoClienteDao implements Serializable{
 			manager.getTransaction().rollback();
 			throw e;
 		}
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public EnderecoCliente adicionarClienteEndereco(Cliente cliente , EnderecoCliente  endereco) throws Exception {
+		endereco.setCliente(cliente);
+		return dao.adiciona(endereco);
+
 	}
 }

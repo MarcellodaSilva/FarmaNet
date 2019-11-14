@@ -67,7 +67,6 @@ public class Dao<T> implements Serializable{
 		return instancia;
 	}
 
-	
 
 	
 	
