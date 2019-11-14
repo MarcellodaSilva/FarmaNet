@@ -11,7 +11,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.entity.Carrinho;
 import model.entity.Estoque;
+import model.entity.Farmacia;
+import model.entity.Produto;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -70,5 +73,28 @@ public class EstoqueDao implements Serializable{
 			manager.getTransaction().rollback();
 			throw e;
 		}
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Estoque EstoqueProduto(Estoque t, List<Produto> produto) throws Exception {
+		t.setProduto(produto);
+		return dao.adiciona(t);
+		
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Estoque EstoqueFarmacia (Estoque t , Farmacia farmacia) throws Exception {
+		t.setFarmacia(farmacia);
+		return dao.adiciona(t);
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Estoque EstoqueCarrinho (Estoque t , List<Carrinho> carrinho) throws Exception {
+		t.setCarrinho(carrinho);
+		return dao.adiciona(t);
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Estoque EstoqueCArrinhoFarmaciaProduto(Estoque t , List<Carrinho> carrinho,Farmacia farmacia,List<Produto> produto) throws Exception {
+		t.setCarrinho(carrinho);
+		t.setFarmacia(farmacia);
+		t.setProduto(produto);
+		return dao.adiciona(t);
 	}
 }

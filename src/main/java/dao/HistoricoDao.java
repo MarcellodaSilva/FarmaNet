@@ -2,6 +2,7 @@ package dao;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -9,6 +10,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import model.entity.Carrinho;
+import model.entity.Cliente;
+import model.entity.Compra;
 import model.entity.Historico;
 
 @Stateless
@@ -25,6 +30,7 @@ public class HistoricoDao implements Serializable{
 	public HistoricoDao(EntityManager manager){
 		dao = new Dao<Historico>(manager, Historico.class);
 	}
+	
 	
 	@PostConstruct
 	private void initDao() {
@@ -69,5 +75,13 @@ public class HistoricoDao implements Serializable{
 			throw e;
 		}
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Historico HistoricoLCiente (Historico t ,Cliente cliente) throws Exception {
+		t.setCliente(cliente);
+		return dao.adiciona(t);
+	}
+
+	
 
 }

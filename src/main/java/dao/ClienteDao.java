@@ -1,8 +1,8 @@
 package dao;
 
 import java.io.Serializable;
-
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -19,7 +19,6 @@ import model.entity.Compra;
 public class ClienteDao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	@PersistenceContext(unitName = "farmanet")
 	private EntityManager manager; 
 	
@@ -74,12 +73,11 @@ public class ClienteDao implements Serializable{
 			throw e;
 		}
 	}
-	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Cliente ClienteCompra(Cliente cliente, List<Compra> compras) throws Exception {
-		cliente.setCompralist(compras);
-		return dao.adiciona(cliente);
-		
+	public Cliente ClienteCompra (Cliente t , List<Compra> compra) throws Exception {
+		t.setCompralist(compra);
+		return dao.adiciona(t);
 	}
+	
 
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.entity.EnderecoFarmacia;
+import model.entity.Farmacia;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -64,5 +66,11 @@ public class EnderecoFarmaciaDao implements Serializable{
 			manager.getTransaction().rollback();
 			throw e;
 		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public EnderecoFarmacia EnderecoFarmaciaFarmacia (EnderecoFarmacia t , Farmacia farmacia) throws Exception {
+		t.setFarmacia(farmacia);
+		return dao.adiciona(t);
 	}
 }
