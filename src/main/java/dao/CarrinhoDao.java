@@ -9,7 +9,11 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import exception.ValidacaoException;
 import model.entity.Carrinho;
+import model.entity.Produto;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -53,5 +57,35 @@ public class CarrinhoDao implements Serializable{
 	public Carrinho buscaPorId(int id) {
 		return dao.buscaPorId(id);
 	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean adicionaProdutoCarrinho (List<Produto> produto , Carrinho carrinho) throws ValidacaoException {
+		try{
+			carrinho.setProduto(produto);
+			dao.adiciona(carrinho);
+			return true;
+		}catch(Exception e) {
+			throw new ValidacaoException ("Erro pra adicionar produto em carrinho");
+		}
+		
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean RemoverProduto(List<Produto> produto) throws ValidacaoException {
+		Query query;
+		int modificados = 0;
+		try {
+		for (int i = 0; i < produto.size(); i++) {
+			String sql = "DELETE FROM carrinho_produto WHERE id_produto = :id";
+			query = manager.createQuery(sql);
+			query.setParameter("id", produto.get(i).getIdProduto());
+			modificados = query.executeUpdate();
+		}
+		}catch (Exception e) {
+			e.getMessage();
+			throw new ValidacaoException ("Erro pra remover produto em carrinho");
+		}
+		if(modificados > 0) return true;
+		else return false;
+	}
+	
 
 }
