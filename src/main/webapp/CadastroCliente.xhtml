@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Teste</title>
+    </h:head>
+    <h:body>
+       <h:form>
+       <h:panelGrid columns="2">
+       <h:outputLabel for="nome" value="Nome"/>
+       <h:inputText id="nome" value="#{clienteBean.cliente.nome}"/>
+       <h:outputLabel for="cpf" value="CPF"/>
+        <h:inputText id="cpf" value="#{clienteBean.cliente.cpf}"/>
+        <h:outputLabel for="telefone" value="Telefone"/>
+         <h:inputText id="telefone1" value="#{clienteBean.cliente.telefone01}"/>
+         <h:outputLabel for="senha" value="Senha"/>
+          <h:inputText id="senha" value="#{clienteBean.cliente.senha}"/>
+          <h:outputLabel for="email" value="Email"/>
+           <h:inputText id="email" value="#{clienteBean.cliente.login}"/>
+           <h:outputLabel for="telefone2" value="Telefone"/>
+            <h:inputText id="telefone2" value="#{clienteBean.cliente.telefone02}"/>
+            <h:commandButton action="#{clienteBean.AdicionaCliente}" value="Adicionar"/>
+       </h:panelGrid>
+       </h:form>
+    </h:body>
+</html>
+
