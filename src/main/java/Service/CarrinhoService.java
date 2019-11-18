@@ -13,10 +13,14 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+
 import dao.CarrinhoDao;
 import dto.ViolacoesValidacao;
 import exception.ValidacaoException;
 import model.entity.Carrinho;
+import model.entity.Estoque;
+import model.entity.Historico;
+import model.entity.Produto;
 
 
 @Stateless
@@ -34,6 +38,23 @@ public class CarrinhoService implements Serializable {
 	public void comprarCarrinho(Carrinho carrinho) throws Exception {
 		validaCarrinho(carrinho);
 		dao.adiciona(carrinho);
+	
+	}
+	
+
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void removerCarrinho (Carrinho carrinho) throws Exception {
+		validaCarrinho(carrinho);
+		dao.remove(carrinho);
+	}
+	public void adicionarProduto(List<Produto> produto , Carrinho carrinho) throws ValidacaoException {
+		dao.adicionaProdutoCarrinho(produto, carrinho);
+	}
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean removerProduto (List<Produto> produto) throws ValidacaoException {
+		return dao.RemoverProduto(produto);
+	
 	}
 
 	public void validaCarrinho(Carrinho carrinho) throws ValidacaoException {

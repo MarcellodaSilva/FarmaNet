@@ -17,6 +17,7 @@ import javax.validation.ValidatorFactory;
 import dao.CompraDao;
 import dto.ViolacoesValidacao;
 import exception.ValidacaoException;
+import model.entity.Cliente;
 import model.entity.Compra;
 
 @Stateless
@@ -40,7 +41,7 @@ public class CompraService implements Serializable {
 	public void atualizarCompra(Compra compra) throws Exception {
 		dao.atualiza(compra);
 	}
-
+	
 	public void validaCompra(Compra compra) throws ValidacaoException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
