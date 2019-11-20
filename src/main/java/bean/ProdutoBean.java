@@ -13,7 +13,6 @@ public class ProdutoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Produto produto;
 	private ProdutoService service;
-	
 	public Produto getProduto() {
 		return produto;
 	}

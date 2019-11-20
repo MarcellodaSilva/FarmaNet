@@ -13,6 +13,7 @@ public class EnderecoFarmaciaBean implements Serializable{
 private static final long serialVersionUID = 1L;
 	private EnderecoFarmacia EnderecoFarmacia;
 	private EnderecoFarmaciaService service;
+	
 	public EnderecoFarmacia getEnderecoFarmacia() {
 		return EnderecoFarmacia;
 	}

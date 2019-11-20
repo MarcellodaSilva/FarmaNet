@@ -13,6 +13,7 @@ public class EnderecoCLienteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private EnderecoCliente enderecoCliente;
 	private EnderecoClienteService service;
+	
 	public EnderecoCliente getEnderecoCliente() {
 		return enderecoCliente;
 	}

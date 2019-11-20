@@ -9,7 +9,6 @@ import Service.CompraService;
 import model.entity.Compra;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "Compra")
-
 public class CompraBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

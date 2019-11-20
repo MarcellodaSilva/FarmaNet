@@ -17,6 +17,7 @@ public class CarrinhoBean implements Serializable {
 	private Carrinho carrinho ;
 	private CarrinhoService servidorCarrinho;
 	
+	
 	public Carrinho getCarrinho() {
 		return carrinho;
 	}

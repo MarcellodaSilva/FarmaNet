@@ -13,6 +13,7 @@ public class HistoricoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Historico historico;
 	private HistoricoService service;
+	
 	public Historico getHistorico() {
 		return historico;
 	}

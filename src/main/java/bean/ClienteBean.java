@@ -17,6 +17,7 @@ public class ClienteBean implements Serializable{
 	private Cliente cliente ;
 	private ClienteService clienteService;
 	
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
