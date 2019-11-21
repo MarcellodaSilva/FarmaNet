@@ -1,20 +1,21 @@
 package bean;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.ClienteService;
 import model.entity.Cliente;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Cliente")
-@NoneScoped
+@Named
 public class ClienteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	private Cliente cliente ;
+	
+	@Inject
 	private ClienteService clienteService;
 	
 	

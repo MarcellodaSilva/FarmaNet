@@ -1,20 +1,24 @@
 package bean;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.FarmaciaService;
 import model.entity.Farmacia;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Farmacia")
-@NoneScoped
+@Named
 public class FarmaciaBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	private Farmacia farmacia;
+	
+	@Inject
 	private FarmaciaService service;
+	
+	
 	public Farmacia getFarmacia() {
 		return farmacia;
 	}

@@ -1,18 +1,21 @@
 package bean;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.CompraService;
 import model.entity.Compra;
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Compra")
+
+@Named
 public class CompraBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private Compra compra;
+	
+	@Inject
 	private CompraService serviceCompra;
 	
 	public Compra getCompra() {
