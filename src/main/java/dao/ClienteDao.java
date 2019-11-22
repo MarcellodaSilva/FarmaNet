@@ -36,8 +36,8 @@ public class ClienteDao implements Serializable{
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Cliente adiciona(Cliente t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Cliente t)  {
+		dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -74,9 +74,9 @@ public class ClienteDao implements Serializable{
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Cliente ClienteCompra (Cliente t , List<Compra> compra) throws Exception {
+	public void ClienteCompra (Cliente t , List<Compra> compra) {
 		t.setCompralist(compra);
-		return dao.adiciona(t);
+		dao.adiciona(t);
 	}
 	
 

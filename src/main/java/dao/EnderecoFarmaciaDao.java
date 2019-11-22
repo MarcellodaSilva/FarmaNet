@@ -34,8 +34,8 @@ public class EnderecoFarmaciaDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoFarmacia adiciona(EnderecoFarmacia t) throws Exception {
-		return dao.adiciona(t);	
+	public void adiciona(EnderecoFarmacia t)  {
+		 dao.adiciona(t);	
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -69,8 +69,8 @@ public class EnderecoFarmaciaDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoFarmacia EnderecoFarmaciaFarmacia (EnderecoFarmacia t , Farmacia farmacia) throws Exception {
+	public void EnderecoFarmaciaFarmacia (EnderecoFarmacia t , Farmacia farmacia) {
 		t.setFarmacia(farmacia);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 }

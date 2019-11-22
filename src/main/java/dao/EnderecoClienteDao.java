@@ -34,8 +34,8 @@ public class EnderecoClienteDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoCliente adiciona(EnderecoCliente t) throws Exception {
-		return dao.adiciona(t);	
+	public void adiciona(EnderecoCliente t) {
+		 dao.adiciona(t);	
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -69,9 +69,9 @@ public class EnderecoClienteDao implements Serializable{
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoCliente adicionarClienteEndereco(Cliente cliente , EnderecoCliente  endereco) throws Exception {
+	public void adicionarClienteEndereco(Cliente cliente , EnderecoCliente  endereco) {
 		endereco.setCliente(cliente);
-		return dao.adiciona(endereco);
+		dao.adiciona(endereco);
 
 	}
 }

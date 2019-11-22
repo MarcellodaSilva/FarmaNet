@@ -38,8 +38,8 @@ public class CarrinhoDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Carrinho adiciona(Carrinho t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Carrinho t) {
+		dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -89,14 +89,14 @@ public class CarrinhoDao implements Serializable{
 		else return false;
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Carrinho CarrinhoEstoque (Carrinho t , List<Estoque> estoque) throws Exception {
+	public void CarrinhoEstoque (Carrinho t , List<Estoque> estoque) {
 		t.setEstoque(estoque);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Carrinho CarrinhoHistorico(Carrinho t, Historico historico) throws Exception {
+	public void CarrinhoHistorico(Carrinho t, Historico historico)  {
 		t.setHistorico(historico);
-		return dao.adiciona(t);
+		dao.adiciona(t);
 	}
 
 }

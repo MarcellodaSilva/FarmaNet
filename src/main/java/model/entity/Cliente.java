@@ -59,18 +59,20 @@ public class Cliente implements Serializable {
     @Column(name = "telefone02", length=11)
     private String telefone02;
     
-    @NotNull
+    
     @OneToOne(mappedBy = "Cliente")
     private EnderecoCliente enderecoCliente;
   
-    @NotNull
+    
     @OneToOne(mappedBy = "cliente")
     private Historico historico;
     
-    @NotEmpty
+    
     @ManyToMany(mappedBy ="clientelist")
     private List<Compra> compralist;
 
+    public Cliente() {}
+    
 	public Integer getIdCliente() {
         return idCliente;
     }

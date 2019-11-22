@@ -38,8 +38,8 @@ public class HistoricoDao implements Serializable{
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Historico adiciona(Historico t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Historico t)  {
+		 dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -77,9 +77,9 @@ public class HistoricoDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Historico HistoricoLCiente (Historico t ,Cliente cliente) throws Exception {
+	public void HistoricoLCiente (Historico t ,Cliente cliente) {
 		t.setCliente(cliente);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 
 	

@@ -32,9 +32,9 @@ public class CompraService implements Serializable {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra efetuarCompra(Compra compra) throws Exception {
+	public void efetuarCompra(Compra compra) throws ValidacaoException {
 		validaCompra(compra);
-		return dao.adiciona(compra);
+		 dao.adiciona(compra);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

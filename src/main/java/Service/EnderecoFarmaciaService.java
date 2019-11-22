@@ -28,9 +28,9 @@ public class EnderecoFarmaciaService implements Serializable {
 	public EnderecoFarmaciaService() {}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoFarmacia cadastrarEndereco(EnderecoFarmacia enderecoFarmacia) throws Exception {
+	public void cadastrarEndereco(EnderecoFarmacia enderecoFarmacia) throws Exception {
 		validaEndereco(enderecoFarmacia);
-		return dao.adiciona(enderecoFarmacia);
+		dao.adiciona(enderecoFarmacia);
 	} 
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

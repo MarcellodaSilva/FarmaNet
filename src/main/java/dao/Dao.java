@@ -16,16 +16,8 @@ public class Dao<T> implements Serializable{
 		this.classe = classe;
 	}
 
-	public T adiciona(T t) throws Exception {
-		em.getTransaction().begin();
-		try{
-			em.persist(t);
-			em.getTransaction().commit();
-			return t;
-		}catch(Exception e){
-			em.getTransaction().rollback();
-			throw e;
-		}
+	public void adiciona(T t) {
+		em.persist(t);
 	}
 
 	public void remove(T t) throws Exception {

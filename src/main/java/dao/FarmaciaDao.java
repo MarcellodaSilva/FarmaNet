@@ -35,9 +35,8 @@ public class FarmaciaDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Farmacia adiciona(Farmacia t) throws Exception {
-		return 
-				dao.adiciona(t);
+	public void adiciona(Farmacia t) {
+		dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

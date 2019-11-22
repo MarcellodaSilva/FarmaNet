@@ -36,8 +36,8 @@ public class ProdutoDao implements Serializable{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Produto adiciona(Produto t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Produto t) {
+		 dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

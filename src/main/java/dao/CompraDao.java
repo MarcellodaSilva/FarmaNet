@@ -35,8 +35,8 @@ public class CompraDao implements Serializable{
 		this.dao = new Dao<Compra>(manager, Compra.class);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra adiciona(Compra t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Compra t) {
+	   dao.adiciona(t);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(Compra t) throws Exception {
@@ -55,32 +55,32 @@ public class CompraDao implements Serializable{
 		return dao.buscaPorId(id);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra CompraCliente (Compra compra , List<Cliente> cliente) throws Exception {
+	public void CompraCliente (Compra compra , List<Cliente> cliente)  {
 		compra.setClientelist(cliente);
-		return dao.adiciona(compra);
+		dao.adiciona(compra);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra CompraEstoque (Compra compra , Estoque estoque) throws Exception {
+	public void CompraEstoque (Compra compra , Estoque estoque) {
 		compra.setEstoque(estoque);
-		return dao.adiciona(compra);
+		 dao.adiciona(compra);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra CompraProduto (Compra compra , Produto produto) throws Exception {
+	public void CompraProduto (Compra compra , Produto produto) {
 		compra.setProduto(produto);
-		return dao.adiciona(compra);
+		dao.adiciona(compra);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra CompraHistorico(Compra t , Historico historico) throws Exception {
+	public void CompraHistorico(Compra t , Historico historico) {
 		t.setHistoricoList(historico);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Compra CompraPassandoProdutoEstoqueClienteHistorico(Compra compra , Produto produto , Estoque estoque , List<Cliente> cliente , Historico historico ) throws Exception {
+	public void CompraPassandoProdutoEstoqueClienteHistorico(Compra compra , Produto produto , Estoque estoque , List<Cliente> cliente , Historico historico )  {
 		compra.setClientelist(cliente);
 		compra.setEstoque(estoque);
 		compra.setProduto(produto);
 		compra.setHistoricoList(historico);
-		return dao.adiciona(compra);
+		dao.adiciona(compra);
 	}
 
 }
