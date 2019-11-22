@@ -8,22 +8,35 @@
     <h:head>
         <title>Cadastro Farmacia</title>
     </h:head>
-    	<h:body>
+    <h:body>
        <h:form>
        <h:outputText id="titulo" value="Pagina de cadastro" style="font-weight: bold;"/>
-       <h:panelGrid columns="3">
-      
+       <h:panelGrid columns="2">
        <h:outputLabel for="nome" value="Nome: "/>
        <h:inputText id="nome" value="#{farmaciaBean.farmacia.nome}"/>
        
        <h:outputLabel for="cnpj" value="CNPJ: "/>
        <h:inputText id="cnpj" value="#{farmaciaBean.farmacia.cnpj}"/>
        
-      
+       <h:selectOneMenu for="telefone" value="Telefone: ">
+       <h:inputText id="telefone1" value="#{farmaciaBean.farmacia.telefone01}"/>
+       <f:selectItem itemLabel="Celular" itemValue="Celular"/>
+       <f:selectItem itemLabel="Fixo" itemValue="Fixo"/>
+       </h:selectOneMenu>
+
+           
+       <h:selectOneMenu for="telefone2" value="Telefone: ">
+       <h:inputText id="telefone2" value="#{farmaciaBean.farmacia.telefone02}"/>
+       <f:selectItem itemLabel="Celular" itemValue="Celular"/>
+       <f:selectItem itemLabel="Fixo" itemValue="Fixo"/>
+       </h:selectOneMenu>
+       
   
   <!--          
        <h:commandButton id="cadaste-se" value="Cadastrar" action="#{}"/>
+       
       <h:commandButton id="Login" value="Já sou parceiro" action="#{}"/> -->
+       
        </h:panelGrid>
        </h:form>
     </h:body>
