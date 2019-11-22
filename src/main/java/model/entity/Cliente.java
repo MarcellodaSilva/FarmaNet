@@ -3,6 +3,7 @@ package model.entity;
 
 import java.io.Serializable;
 
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,8 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -50,12 +49,12 @@ public class Cliente implements Serializable {
     @Column(name = "login", nullable = false, length=130)
     private String login;
     
-    @NotBlank(message="{cliente.telefone.blank.msg }")
+    @NotBlank(message="{cliente.telefone.blank.msg}")
     @Size(min=11, message="{cliente.telefone.size.msg}")
     @Column(name = "telefone01", nullable = false, length=11)
     private String telefone01;
     
-    @Size(min=11, message="{cliente.telefone.size.msg}")
+    @Size(min=11, message="{cliente.telefone2.size.msg}")
     @Column(name = "telefone02", length=11)
     private String telefone02;
     
