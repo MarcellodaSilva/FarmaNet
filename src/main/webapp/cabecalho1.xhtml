@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="cabecalhocss.css" />
+    </h:head>
+    <h:body>
+        <p:growl id="messages" showDetail="true" />
+        <div id="container-cabecalho">
+            <div id="campo-pesquisa">
+                <h:inputText id="iptpesquisa" value="#{pesquisaProdutoBean.nomeProduto}"/>
+                <h:commandLink action="#{pesquisaProdutoBean.pesquisaProduto}"/>
+            </div>
+            <div>
+                <p:commandButton id="btnentrar" onclick="PF('opcoesLogin').show(); return false;"/>
+                <p:commandButton id="btncadastro" onclick="PF('opcoesCadastro').show(); return false;"/>
+            </div>
+            <div id="modalentrar">
+                <p:dialog widgetVar="opcoesLogin" styleClass="dialog" width="525"
+                          height="150" draggable="false" header="Logar como : "
+                          modal="false" resizable="false">
+                    <a href="logincliente.xhtml"> <img
+                            src="" alt="Cliente" />
+                    </a>
+
+                    <a href="loginfarmacia.xhtml"> <img
+                            src="" alt="Farmacia" />
+                    </a>
+                </p:dialog>
+            </div>
+            <div id="modalcadastro">
+                <p:dialog widgetVar="opcoesCadastro" styleClass="dialog" width="525"
+                          height="150" draggable="false" header="Criar conta como : "
+                          modal="false" resizable="false">
+                    <a href="cadastrocliente.xhtml"> <img
+                            src="" alt="Cliente" />
+                    </a>
+
+                    <a href="cadastrofarmacia.xhtml"> <img
+                            src="" alt="Farmacia" />
+                    </a>
+                </p:dialog>
+            </div>
+
+        </div>
+    </h:body>
+</html>
+

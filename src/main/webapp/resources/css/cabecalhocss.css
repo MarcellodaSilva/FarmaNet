@@ -1,0 +1,12 @@
+.dialog {
+	top: 40% !important;
+}
+.dialog img {
+	margin:20px;
+	width: 75px;
+	height: 75px;
+}
+
+.dialog img:hover {
+	transform:scale(1.2);
+}
