@@ -1,3 +1,6 @@
+body{
+	margin:0;
+}
 #bottom  {
 	position:relative;
 	width: 100%;
@@ -17,9 +20,11 @@
 	width: 100%;
 }
 
-.cop{
+
+.cop h5{
+	position:absolute;
+	top:189px;
 	margin: 15px 10px;
-    position: absolute;
 }
 
 .logo-footer{
@@ -54,6 +59,7 @@
 	padding: 20px 0px 0px 10px;
 	font-size: 17px;
 	color: white;
+	top: -28px;
 	height: 150px;
 	width: 300px;
 	right: 15px;

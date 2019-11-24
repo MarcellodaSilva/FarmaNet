@@ -10,41 +10,49 @@
         <p:growl id="messages" showDetail="true" />
         <div id="container-cabecalho">
             <div id="campo-pesquisa">
-                <h:inputText id="iptpesquisa" value="#{pesquisaProdutoBean.nomeProduto}"/>
-                <h:commandLink action="#{pesquisaProdutoBean.pesquisaProduto}"/>
+                <h:inputText id="iptpesquisa" placeholder="Pesquisar..." value="#{pesquisaProdutoBean.nomeProduto}"/>
+                <h:commandLink action="#{pesquisaProdutoBean.pesquisaProduto}" id="icon-pesquisa"><img src="./resources/img/lupa.png"/></h:commandLink>
             </div>
-            <div>
-                <p:commandButton id="btnentrar" onclick="PF('opcoesLogin').show(); return false;"/>
-                <p:commandButton id="btncadastro" onclick="PF('opcoesCadastro').show(); return false;"/>
+            
+            <div id="container-carrinho">
+            <a href="Carrinho.xhtml"><img src="./resources/img/cesta_compra.png" alt="Carrinho" /></a>
             </div>
+            
+            <div id="container-btns">
+                <p:commandButton id="btnentrar" onclick="PF('opcoesLogin').show(); return false;" value="Entrar"/>
+                <p:commandButton id="btncadastro" onclick="PF('opcoesCadastro').show(); return false;" value="Criar Conta"/>
+            </div>
+         </div>
             <div id="modalentrar">
-                <p:dialog widgetVar="opcoesLogin" styleClass="dialog" width="525"
-                          height="150" draggable="false" header="Logar como : "
+                <p:dialog widgetVar="opcoesLogin" styleClass="dialog" width="350"
+                          height="160" draggable="false" header="Entrar como : "
                           modal="false" resizable="false">
-                    <a href="LoginCliente.xhtml"> <img
-                            src="" alt="Cliente" />
+                    <a href="LoginCliente.xhtml"><img id="img-usuario-login"
+                            src="./resources/img/login_user.png" alt="Cliente"/>
                     </a>
+                    
 
-                    <a href="LoginFarmacia.xhtml"> <img
-                            src="" alt="Farmacia" />
+                    <a href="LoginFarmacia.xhtml"> <img id="img-farmacia-login"
+                            src="./resources/img/icone_farmacia.png" alt="Farmacia" />
                     </a>
+                    
                 </p:dialog>
             </div>
             <div id="modalcadastro">
-                <p:dialog widgetVar="opcoesCadastro" styleClass="dialog" width="525"
-                          height="150" draggable="false" header="Criar conta como : "
+                <p:dialog widgetVar="opcoesCadastro" styleClass="dialog" width="350"
+                          height="160" draggable="false" header="Criar conta como : "
                           modal="false" resizable="false">
-                    <a href="cadastrocliente.xhtml"> <img
-                            src="" alt="Cliente" />
+                    <a href="CadastroCliente.xhtml"> <img id="img-usuario-login"
+                            src="./resources/img/adicionar_user.png" alt="Cliente" />
                     </a>
+                   
 
-                    <a href="CadastroFarmacia.xhtml"> <img
-                            src="" alt="Farmacia" />
+                    <a href="CadastroFarmacia.xhtml"> <img id="img-farmacia-login"
+                            src="./resources/img/icone_farmacia.png" alt="Farmacia" />
                     </a>
+                   
                 </p:dialog>
             </div>
-
-        </div>
     </h:body>
 </html>
 
