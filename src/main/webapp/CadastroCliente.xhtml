@@ -4,13 +4,13 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
     <ui:define name="css">
-		<h:outputStylesheet library="css" name="CadClientecss.css" />
+		 <h:outputStylesheet name="./css/CadClientecss.css"/>
 	</ui:define>
     
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="1" id="Grid">
-            <div id="form">
+            <div class="container-formulario">
             
                 <h:outputLabel for="iptnome" value="Nome"/>
                 <h:message for="iptnome"/>

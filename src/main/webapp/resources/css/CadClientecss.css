@@ -1,3 +1,7 @@
-#form{
-	background-color:black;
+.container-formulario{
+	
+}
+form{
+	position: relative;
+	left: 240px;
 }
