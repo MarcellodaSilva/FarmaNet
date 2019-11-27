@@ -11,13 +11,11 @@
           <h:outputText id="titulo" value="Pagina de login" style="font-weight: bold;"/>
           <h:panelGrid columns="2">
           <h:outputLabel for="email" value="E-mail:" />
-          <h:inputText id="email" value="#{clienteBean.cliente.login}" />
+          <h:inputText id="email" value="#{loginClienteBean.login}" />
           
           <h:outputLabel for="senha" value="Senha:" />
-          <h:inputSecret id="senha" value="#{clienteBean.cliente.senha}" /> 
-          <h:commandButton id="Login" value="Acessar" action="PaginaInicial.xhtml"/> 
-          <h:commandButton id="cadastre-se" value="cadastre-se" action="CadastroCliente.xhtml"/>
-          <h:messages id="msg"/> 
+          <h:inputSecret id="senha" value="#{loginClienteBean.senha}" /> 
+          <h:commandButton id="Login" value="Acessar" action="#{loginClienteBean.loginCliente()}"/> 
           </h:panelGrid>
     </h:form>
     </h:body>

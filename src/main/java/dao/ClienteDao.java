@@ -10,7 +10,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
+import exception.ValidacaoException;
 import model.entity.Cliente;
 import model.entity.Compra;
 
@@ -74,9 +76,22 @@ public class ClienteDao implements Serializable{
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void ClienteCompra (Cliente t , List<Compra> compra) {
+	public void clienteCompra (Cliente t , List<Compra> compra) {
 		t.setCompralist(compra);
 		dao.adiciona(t);
+	}
+	public int loginCliente(String senha , String login)  {
+		try {
+		String sql = "Select * from cliente c where c.senha =:senha and c.login =:login";
+		TypedQuery<Cliente> query = manager.createQuery(sql , Cliente.class);
+		query.setParameter("senha",senha);
+		query.setParameter("login",login);
+		
+		return  query.getFirstResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 
