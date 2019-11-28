@@ -7,19 +7,18 @@
         <title>Login Farmacia</title>
     </h:head>
     <h:body>
-    <h:form>
-          <h:outputText id="titulo" value="Pagina de login" style="font-weight: bold"/>
+    <fieldset>
+    <legend>Login Farmacia</legend>
+     <h:form>
+     
           <h:panelGrid columns="2">
-          <h:outputLabel for="email" value="Nome Usuário:" />
-          <h:inputText id="email" value="#{}" />
-          
-          <h:outputLabel for="senha" value="Senha:" />
-          <h:password id="senha" value="#{}" /> 
-          
-          <h:commandButton id="Login" value="Acessar" action="PaginaInicial.xhtml"/> 
-          <h:commandButton id="cadastre-se" value="Faça o cadastro" action="CadastroFarmacia.xhtml"/>
-          <h:messages id="msg"/> 
+          <h:outputLabel for="iptlogin" value="Nome Usuário:" />
+          <h:inputText id="iptlogin" value="#{loginFarmaciaBean.login}" />  
+          <h:outputLabel for="iptsenha" value="Senha:" />
+          <h:inputSecret id="iptsenha" value="#{loginFarmaciaBean.senha}" /> 
+          <h:commandButton value="Login" action="#{loginFarmaciaBean.loginFarmacia}"/> 
           </h:panelGrid>
     </h:form>
+    </fieldset>
     </h:body>
    </html>

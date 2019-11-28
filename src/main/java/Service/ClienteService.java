@@ -1,6 +1,7 @@
 package Service;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,12 +14,11 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import dao.ClienteDao;
 import dto.ViolacoesValidacao;
 import exception.ValidacaoException;
 import model.entity.Cliente;
-import model.entity.Compra;
+
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -65,7 +65,7 @@ public class ClienteService implements Serializable {
 		boolean result = dao.removePorID(id);
 		return result;
 	}
-	public int loginCliente(String senha ,String login) {
+	public Cliente loginCliente(String senha ,String login)   {
 		return dao.loginCliente(senha, login);
 	}
 

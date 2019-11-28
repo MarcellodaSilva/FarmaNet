@@ -73,6 +73,8 @@ public class ClienteDao implements Serializable{
 		}catch(RuntimeException e){
 			manager.getTransaction().rollback();
 			throw e;
+		}finally {
+			manager.close();
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -80,18 +82,20 @@ public class ClienteDao implements Serializable{
 		t.setCompralist(compra);
 		dao.adiciona(t);
 	}
-	public int loginCliente(String senha , String login)  {
+	public Cliente loginCliente(String senha , String login)  {
 		try {
 		String sql = "Select * from cliente c where c.senha =:senha and c.login =:login";
 		TypedQuery<Cliente> query = manager.createQuery(sql , Cliente.class);
 		query.setParameter("senha",senha);
 		query.setParameter("login",login);
-		
-		return  query.getFirstResult();
+		return query.getSingleResult();
 		}catch (Exception e) {
 			e.printStackTrace();
+			
+		}finally {
+			manager.close();
 		}
-		return 0;
+		return null;
 	}
 	
 

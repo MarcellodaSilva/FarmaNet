@@ -1,11 +1,15 @@
 package bean;
 
 import java.io.Serializable;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import Service.ClienteService;
+import exception.ValidacaoException;
 import model.entity.Cliente;
 
 @Named
@@ -34,9 +38,14 @@ public class ClienteBean implements Serializable{
 		this.clienteService = clienteService;
 	}
 	
-	public String adicionarCliente() throws Exception {
-		clienteService.cadastrarCliente(cliente);
-		return "Cadastro Realizado Com Sucesso!";
+	public void adicionarCliente() throws Exception {
+		try{
+			clienteService.cadastrarCliente(cliente);
+		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro Realizado Com Sucesso!"));
+		}catch(ValidacaoException v){
+		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro", "Erro no Cadastro"));
+		}
+		
 	}
 	
 }

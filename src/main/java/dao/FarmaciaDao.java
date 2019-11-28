@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+import javax.persistence.TypedQuery;
 import model.entity.Farmacia;
 
 @Stateless
@@ -57,6 +58,21 @@ public class FarmaciaDao implements Serializable{
 		return dao.buscaPorId(id);
 	}
 	
+	public Farmacia loginFarmacia(String senha , String login)  {
+		try {
+		String sql = "Select * from farmacia f where f.senha =:senha and f.login =:login";
+		TypedQuery<Farmacia> query = manager.createQuery(sql , Farmacia.class);
+		query.setParameter("senha",senha);
+		query.setParameter("login",login);
+		return query.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			manager.close();
+		}
+		return null;
+	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();

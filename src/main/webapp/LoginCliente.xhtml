@@ -8,15 +8,16 @@
     </h:head>
     <h:body>
     <h:form>
-          <h:outputText id="titulo" value="Pagina de login" style="font-weight: bold;"/>
+         <fieldset>
+         <legend>Login Usuário</legend>
           <h:panelGrid columns="2">
-          <h:outputLabel for="email" value="E-mail:" />
-          <h:inputText id="email" value="#{loginClienteBean.login}" />
-          
-          <h:outputLabel for="senha" value="Senha:" />
-          <h:inputSecret id="senha" value="#{loginClienteBean.senha}" /> 
-          <h:commandButton id="Login" value="Acessar" action="#{loginClienteBean.loginCliente()}"/> 
+          <h:outputLabel for="iptemail" value="E-mail:" />
+          <h:inputText id="iptlogin" value="#{loginClienteBean.login}" />
+          <h:outputLabel for="iptsenha" value="Senha:" />
+          <h:inputSecret id="iptsenha" value="#{loginClienteBean.senha}" /> 
+          <h:commandButton id="Login" value="Acessar" action="#{loginClienteBean.loginCliente}"/> 
           </h:panelGrid>
+         </fieldset> 
     </h:form>
     </h:body>
   </html>
