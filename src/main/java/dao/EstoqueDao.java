@@ -37,8 +37,8 @@ public class EstoqueDao implements Serializable{
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Estoque adiciona(Estoque t) throws Exception {
-		return dao.adiciona(t);
+	public void adiciona(Estoque t) {
+		 dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -75,26 +75,26 @@ public class EstoqueDao implements Serializable{
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Estoque EstoqueProduto(Estoque t, List<Produto> produto) throws Exception {
+	public void EstoqueProduto(Estoque t, List<Produto> produto)  {
 		t.setProduto(produto);
-		return dao.adiciona(t);
+		dao.adiciona(t);
 		
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Estoque EstoqueFarmacia (Estoque t , Farmacia farmacia) throws Exception {
+	public void EstoqueFarmacia (Estoque t , Farmacia farmacia)  {
 		t.setFarmacia(farmacia);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Estoque EstoqueCarrinho (Estoque t , List<Carrinho> carrinho) throws Exception {
+	public void EstoqueCarrinho (Estoque t , List<Carrinho> carrinho)  {
 		t.setCarrinho(carrinho);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Estoque EstoqueCArrinhoFarmaciaProduto(Estoque t , List<Carrinho> carrinho,Farmacia farmacia,List<Produto> produto) throws Exception {
+	public void EstoqueCArrinhoFarmaciaProduto(Estoque t , List<Carrinho> carrinho,Farmacia farmacia,List<Produto> produto) {
 		t.setCarrinho(carrinho);
 		t.setFarmacia(farmacia);
 		t.setProduto(produto);
-		return dao.adiciona(t);
+		 dao.adiciona(t);
 	}
 }

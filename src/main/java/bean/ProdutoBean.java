@@ -2,17 +2,26 @@ package bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.ProdutoService;
 import model.entity.Produto;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Produto")
+@Named
+@ViewScoped
 public class ProdutoBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	private Produto produto;
+	
+	@Inject
 	private ProdutoService service;
+	
+	
 	public Produto getProduto() {
 		return produto;
 	}

@@ -2,19 +2,23 @@ package bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.CarrinhoService;
 import model.entity.Carrinho;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Carrinho")
-
+@Named
+@ViewScoped
 public class CarrinhoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	private Carrinho carrinho ;
+	
+	@Inject
 	private CarrinhoService servidorCarrinho;
 	
 	

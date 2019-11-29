@@ -30,9 +30,9 @@ public class EnderecoClienteService implements Serializable {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public EnderecoCliente cadastrarEndereco(EnderecoCliente enderecoCliente) throws Exception {
+	public void cadastrarEndereco(EnderecoCliente enderecoCliente) throws Exception {
 		validaEndereco(enderecoCliente);
-		return dao.adiciona(enderecoCliente);
+		 dao.adiciona(enderecoCliente);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

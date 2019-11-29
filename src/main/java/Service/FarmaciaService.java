@@ -60,6 +60,10 @@ public class FarmaciaService implements Serializable {
 		return result;
 	}
 
+	public Farmacia loginFarmacia(String senha, String login) {
+		return dao.loginFarmacia(senha, login);
+	}
+	
 	public void validaFarmacia(Farmacia farmacia) throws ValidacaoException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();

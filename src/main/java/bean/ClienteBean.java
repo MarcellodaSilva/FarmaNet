@@ -2,19 +2,26 @@ package bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Service.ClienteService;
+import exception.ValidacaoException;
 import model.entity.Cliente;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name = "Cliente")
-@NoneScoped
+@Named
+@ViewScoped
 public class ClienteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	private Cliente cliente ;
+	
+	@Inject
 	private ClienteService clienteService;
 	
 	
@@ -29,6 +36,16 @@ public class ClienteBean implements Serializable{
 	}
 	public void setClienteService(ClienteService clienteService) {
 		this.clienteService = clienteService;
+	}
+	
+	public void adicionarCliente() throws Exception {
+		try{
+			clienteService.cadastrarCliente(cliente);
+		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro Realizado Com Sucesso!"));
+		}catch(ValidacaoException v){
+		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro", "Erro no Cadastro"));
+		}
+		
 	}
 	
 }
