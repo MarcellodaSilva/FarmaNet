@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import model.entity.Cliente;
 import model.entity.Farmacia;
 
 @Stateless
@@ -60,24 +62,24 @@ public class FarmaciaDao implements Serializable{
 	
 	public Farmacia loginFarmacia(String senha , String login)  {
 		try {
-		String sql = "Select * from farmacia f where f.senha =:senha and f.login =:login";
-		TypedQuery<Farmacia> query = manager.createQuery(sql , Farmacia.class);
-		query.setParameter("senha",senha);
-		query.setParameter("login",login);
-		return query.getSingleResult();
+			String sql = "select f from Farmacia f where f.senha =:senha and f.login =:login";
+			TypedQuery<Farmacia> query = manager.createQuery(sql , Farmacia.class);
+			query.setParameter("senha",senha);
+			query.setParameter("login",login);
+			Farmacia farmacia = query.getSingleResult();
+			if(farmacia != null && farmacia.getLogin().equals(login) && farmacia.getSenha().equals(senha)) {
+				return farmacia;
+			}
 		}catch (Exception e) {
-			e.printStackTrace();
-			
-		}finally {
-			manager.close();
-		}
+			System.out.println(e.getMessage());
+		}	
 		return null;
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();
 		try{
-			String sql = "Delete From farmacia f Where f.id_farmacia = :idFarmacia";
+			String sql = "Delete From Farmacia f Where f.id_farmacia = :idFarmacia";
 			Query query = manager.createQuery(sql);
 			query.setParameter("idFarmacia",id);
 			query.executeUpdate();

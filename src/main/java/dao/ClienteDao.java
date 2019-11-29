@@ -15,6 +15,7 @@ import javax.persistence.TypedQuery;
 import exception.ValidacaoException;
 import model.entity.Cliente;
 import model.entity.Compra;
+import model.entity.Farmacia;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -73,8 +74,6 @@ public class ClienteDao implements Serializable{
 		}catch(RuntimeException e){
 			manager.getTransaction().rollback();
 			throw e;
-		}finally {
-			manager.close();
 		}
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -84,18 +83,19 @@ public class ClienteDao implements Serializable{
 	}
 	public Cliente loginCliente(String senha , String login)  {
 		try {
-		String sql = "Select * from cliente c where c.senha =:senha and c.login =:login";
-		TypedQuery<Cliente> query = manager.createQuery(sql , Cliente.class);
-		query.setParameter("senha",senha);
-		query.setParameter("login",login);
-		return query.getSingleResult();
+			String sql = "select c from Cliente c where c.senha =:senha and c.login =:login";
+			TypedQuery<Cliente> query = manager.createQuery(sql , Cliente.class);
+			query.setParameter("senha",senha);
+			query.setParameter("login",login);
+			Cliente cliente = query.getSingleResult();
+			if(cliente != null && cliente.getLogin().equals(login) && cliente.getSenha().equals(senha)) {
+				return cliente;
+			}
 		}catch (Exception e) {
-			e.printStackTrace();
-			
-		}finally {
-			manager.close();
-		}
+			System.out.println(e.getMessage());
+		}	
 		return null;
+			
 	}
 	
 

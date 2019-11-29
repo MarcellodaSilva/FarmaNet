@@ -1,6 +1,8 @@
 package bean;
 
 import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -8,6 +10,7 @@ import Service.CarrinhoService;
 import model.entity.Carrinho;
 
 @Named
+@ViewScoped
 public class CarrinhoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

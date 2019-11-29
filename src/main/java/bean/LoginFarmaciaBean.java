@@ -1,6 +1,8 @@
 package bean;
 
 import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -10,12 +12,12 @@ import Service.FarmaciaService;
 import model.entity.Farmacia;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class LoginFarmaciaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
+	
 	private Farmacia farmacia;
 	
 	@Inject
@@ -52,9 +54,12 @@ public class LoginFarmaciaBean implements Serializable{
 	
 	public String loginFarmacia() {
 		if(senha.trim().isEmpty() != true && login.trim().isEmpty() != true) {
+		     farmacia = farmaciaService.loginFarmacia(senha, login);
+			if(farmacia != null) {
 			FacesContext session = FacesContext.getCurrentInstance();
 			session.getExternalContext().getSessionMap().put("email",farmacia);
-			return "paginaicial?faces-redirect=true";
+			return "Carrinho?faces-redirect=true";
+			}
 		}else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro!", "Email ou Senha Incorretos!"));
 		}
@@ -63,6 +68,7 @@ public class LoginFarmaciaBean implements Serializable{
 	
 	public String Deslogar() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return"paginaicial?faces-redirect=true";
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Deslogado com sucesso!"));
+		return"CadastroCliente?faces-redirect=true";
 	}
 }

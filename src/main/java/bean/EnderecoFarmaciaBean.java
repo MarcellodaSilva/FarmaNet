@@ -1,6 +1,8 @@
 package bean;
 
 import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -8,6 +10,7 @@ import Service.EnderecoFarmaciaService;
 import model.entity.EnderecoFarmacia;
 
 @Named
+@ViewScoped
 public class EnderecoFarmaciaBean implements Serializable{
 	
     private static final long serialVersionUID = 1L;

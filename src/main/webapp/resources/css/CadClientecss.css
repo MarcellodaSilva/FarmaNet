@@ -1,7 +1,14 @@
 .container-formulario{
+	 
+}
+#cadastroCliente{
+	position: relative;
 	
 }
-form{
-	position: relative;
-	left: 240px;
+
+#Grid{
+	left: 20px;
+}
+#fildset{
+	right:400px;
 }
