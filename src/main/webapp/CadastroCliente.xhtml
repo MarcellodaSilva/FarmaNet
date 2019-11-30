@@ -10,11 +10,13 @@
     
     <ui:define name="content">
         <h:form id = "cadastroCliente">
-        <fieldset id="fildset">
-        <legend>Cadastro Usuário</legend>
+       
+        <div class="container-formulario"> 
+         <fieldset id="fildset">
+           <legend>Cadastro Usuário</legend>
+          
         <h:panelGrid columns="1" id="Grid">
-            <div class="container-formulario">
-            
+        
                 <h:outputLabel for="iptnome" value="Nome"/>
                 <h:message for="iptnome"/>
                 <h:inputText id="iptnome" value="#{clienteBean.cliente.nome}" required="true"/>
@@ -40,9 +42,11 @@
                 <h:inputSecret id="iptsenha" value="#{clienteBean.cliente.senha}" required="true"/>
                 
                 <h:commandButton value="Cadastrar" action="#{clienteBean.adicionarCliente}"  />
-            </div>
+          
             </h:panelGrid>
-        </fieldset>
+              </fieldset>
+             </div>
+       
         </h:form>  
     </ui:define>
 </ui:composition>
