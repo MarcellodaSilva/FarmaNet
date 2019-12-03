@@ -2,6 +2,7 @@ package dao;
 
 import java.io.Serializable;
 
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,8 +13,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
-import model.entity.Cliente;
 import model.entity.Farmacia;
 
 @Stateless

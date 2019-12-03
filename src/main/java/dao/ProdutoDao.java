@@ -2,7 +2,6 @@ package dao;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -11,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
 import exception.ValidacaoException;
 import model.entity.Produto;
 
@@ -71,17 +69,12 @@ public class ProdutoDao implements Serializable{
 	
 	public List<Produto> Pesquisar(String nome) throws ValidacaoException{
 		try {
-		manager.getTransaction().begin();
-		String sql = "select  p.valor p.nome p.descricao p.validade p.tipo p.marca from estoque_produto ep produto p \n" + 
-				"         where ep.id_produto = p.id_produto and p.nome like '%:nome%'";
-		TypedQuery<Produto> query = manager.createQuery(sql, Produto.class);
-		query.setParameter("nome", nome);
-		query.executeUpdate();
-		manager.getTransaction().commit();
-		return query.getResultList();
+		String hqlproduto = "select  p from  Produto p where p.nome like '%:nome%'";
+		TypedQuery<Produto> queryProduto = manager.createQuery(hqlproduto, Produto.class).setParameter("nome",nome);
+		List<Produto> produto =	queryProduto.getResultList();
+ 		return produto;
 		}catch(Exception e) {
 			e.getMessage();
-			manager.getTransaction().rollback();
 			throw new ValidacaoException("Deu erro em pesquisar ");
 		}
 		

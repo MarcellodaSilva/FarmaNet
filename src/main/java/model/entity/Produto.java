@@ -61,7 +61,7 @@ public class Produto implements Serializable {
     @Column(name = "marca", nullable=false, length=120)
     private String marca;
     
-    @NotBlank(message="{produto.quantidade.blank.msg}")
+ 
     @PositiveOrZero(message="{produto.quatidade.positiveorzero.msg}")
     @Column(name = "quantidade", nullable = false)
     private int quantidade;

@@ -13,8 +13,8 @@
              <a href="pagina_inicial.xhtml"><img src="./resources/img/logo.png"/></a>
             </div>
             <div id="campo-pesquisa">
-                <h:inputText id="iptpesquisa" placeholder="Pesquisar..." value="#{pesquisaProdutoBean.nomeProduto}"/>
-                <h:commandLink action="#{pesquisaProdutoBean.pesquisaProduto}" id="icon-pesquisa"><img src="./resources/img/lupa.png"/></h:commandLink>
+                <p:inputText id="iptpesquisa" placeholder="Pesquisar..." value="#{pesquisaProdutoBean.nomeProduto}"/>
+                <h:commandLink action="#{pesquisaProdutoBean.listarProdutos}" id="icon-pesquisa"><img src="./resources/img/lupa.png"/></h:commandLink>
             </div>
             
             <div id="container-carrinho">
@@ -58,4 +58,3 @@
             </div>
     </h:body>
 </html>
-

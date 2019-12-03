@@ -1,6 +1,7 @@
 package Service;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,6 @@ import javax.validation.ValidatorFactory;
 import dao.CompraDao;
 import dto.ViolacoesValidacao;
 import exception.ValidacaoException;
-import model.entity.Cliente;
 import model.entity.Compra;
 
 @Stateless

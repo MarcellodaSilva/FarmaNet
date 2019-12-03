@@ -1,14 +1,16 @@
 .container-formulario{
-	 
-}
-#cadastroCliente{
-	position: relative;
-	
+position: relative;
+left: 31%;	
+width: 40%; 
+top: 70px;
+margin-bottom: 5%;
+
 }
 
-#Grid{
-	left: 20px;
-}
+
+
+
 #fildset{
 	right:400px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,10 +11,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import model.entity.Carrinho;
 import model.entity.Cliente;
-import model.entity.Compra;
 import model.entity.Historico;
 
 @Stateless

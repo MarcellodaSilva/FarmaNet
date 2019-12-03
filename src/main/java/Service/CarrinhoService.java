@@ -1,6 +1,7 @@
 package Service;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,8 +19,6 @@ import dao.CarrinhoDao;
 import dto.ViolacoesValidacao;
 import exception.ValidacaoException;
 import model.entity.Carrinho;
-import model.entity.Estoque;
-import model.entity.Historico;
 import model.entity.Produto;
 
 
