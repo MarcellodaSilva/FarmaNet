@@ -61,7 +61,7 @@ public class ProdutoService implements Serializable {
 	}
         
         public List<Produto>pesquisar(String produto) throws ValidacaoException{
-          return dao.Pesquisar(produto);
+          return dao.pesquisar(produto);
            
         }
 

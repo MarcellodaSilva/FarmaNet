@@ -67,10 +67,10 @@ public class ProdutoDao implements Serializable{
 		else return false;
 	}
 	
-	public List<Produto> Pesquisar(String nome) throws ValidacaoException{
+	public List<Produto> pesquisar(String nome) throws ValidacaoException{
 		try {
-		String hqlproduto = "select  p from  Produto p where p.nome like '%:nome%'";
-		TypedQuery<Produto> queryProduto = manager.createQuery(hqlproduto, Produto.class).setParameter("nome",nome);
+		String hqlproduto = "select  p from  Produto p where lower(p.nome) like :nome";
+		TypedQuery<Produto> queryProduto = manager.createQuery(hqlproduto, Produto.class).setParameter("nome",'%'+nome.toLowerCase()+'%');
 		List<Produto> produto =	queryProduto.getResultList();
  		return produto;
 		}catch(Exception e) {
