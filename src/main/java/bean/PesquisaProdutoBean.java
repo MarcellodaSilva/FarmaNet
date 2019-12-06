@@ -1,10 +1,11 @@
 package bean;
 
-
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +14,7 @@ import exception.ValidacaoException;
 import model.entity.Produto;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class PesquisaProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +31,7 @@ public class PesquisaProdutoBean implements Serializable {
 	public void setProdutoService(ProdutoService produtoService) {
 		this.produtoService = produtoService;
 	}
-	
+
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
@@ -48,7 +49,14 @@ public class PesquisaProdutoBean implements Serializable {
 	}
 
 	public String listarProdutos() throws ValidacaoException {
-		produtos =produtoService.pesquisar(nomeProduto);
-		return "resultado.xhtml?faces-redirect=true";
+		if (!nomeProduto.trim().isEmpty()) {
+			produtos = produtoService.pesquisar(nomeProduto);
+			return "resultado";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Digite o nome do produto."));
+		}
+		return null;
+
 	}
 }

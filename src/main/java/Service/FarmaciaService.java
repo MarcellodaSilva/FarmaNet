@@ -46,23 +46,15 @@ public class FarmaciaService implements Serializable {
 	public void atualizarFarmacia(Farmacia farmacia) throws Exception {
 		dao.atualiza(farmacia);
 	}
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void atualizarCampos(Integer id, Farmacia farmacia) throws Exception {
-		Farmacia farmaciadoBanco = dao.buscaPorId(id);
-		farmaciadoBanco.atualizarDados(farmacia);
-		dao.atualiza(farmaciadoBanco);
-	}
-
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removerFarmacia(Integer id) {
 		boolean result = dao.removePorID(id);
 		return result;
 	}
 
-	public Farmacia loginFarmacia(String senha, String login) {
+	/*public Farmacia loginFarmacia(String senha, String login) {
 		return dao.loginFarmacia(senha, login);
-	}
+	}*/
 	
 	public void validaFarmacia(Farmacia farmacia) throws ValidacaoException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

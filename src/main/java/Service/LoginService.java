@@ -20,7 +20,7 @@ public class LoginService implements Serializable {
 	@Inject
 	private FarmaciaDao Daofarmacia;
 
-	public Object logar(String senha, String login) throws ValidacaoException {
+	/*public Object logar(String senha, String login) throws ValidacaoException {
 		if (senha.trim().isEmpty() != true && login.trim().isEmpty() != true) {
 			Cliente cliente = Daocliente.loginCliente(senha, login);
 			Farmacia farmacia = Daofarmacia.loginFarmacia(senha, login);
@@ -36,6 +36,6 @@ public class LoginService implements Serializable {
 			throw new ValidacaoException("Erro de Login");
 		}
 
-	}
+	}*/
 
 }

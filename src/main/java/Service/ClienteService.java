@@ -54,21 +54,13 @@ public class ClienteService implements Serializable {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void atualizarCampos(Integer id, Cliente cliente) throws Exception {
-		Cliente clientedoBanco = dao.buscaPorId(id);
-		clientedoBanco.atualizarDados(cliente);
-		dao.atualiza(clientedoBanco);
-	}
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removerCliente(Integer id) {
 		boolean result = dao.removePorID(id);
 		return result;
 	}
-	public Cliente loginCliente(String senha ,String login)   {
+	/*public Cliente loginCliente(String senha ,String login)   {
 		return dao.loginCliente(senha, login);
-	}
-
+	}*/
 	public void validaCliente(Cliente cliente) throws ValidacaoException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();

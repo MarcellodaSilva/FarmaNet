@@ -66,18 +66,18 @@ public class LoginBean implements Serializable {
 		this.loginService = loginService;
 	}
 
-	public String logar() {
+	/*public String logar() {
 		try {
 			Object user = loginService.logar(senha, login);
 			FacesContext sessao = FacesContext.getCurrentInstance();
 			if (user instanceof Cliente) {
 				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
 				cliente = (Cliente) user;
-				return "perfil_cliente?faces-redirect=true";
+				return "perfil_cliente";
 			} else if (user instanceof Farmacia) {
-				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
+				sessao.getExternalContext().getSessionMap().put("Perfil", (Farmacia) user);
 				farmacia = (Farmacia) user;
-				return "perfil_farmacia?faces-redirect=true";
+				return "perfil_farmacia";
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Email ou Senha Incorretos."));
@@ -88,10 +88,10 @@ public class LoginBean implements Serializable {
 		}
 		return null;
 
-	}
+	}*/
 
 	public String Deslogar() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "pagina_inicial.xhtml?faces-redirect=true";
+		return "pagina_inicial";
 	}
 }

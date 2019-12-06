@@ -52,7 +52,7 @@ public class LoginFarmaciaBean implements Serializable{
 		this.login = login;
 	}
 	
-	public String loginFarmacia() {
+	/*public String loginFarmacia() {
 		if(senha.trim().isEmpty() != true && login.trim().isEmpty() != true) {
 		     farmacia = farmaciaService.loginFarmacia(senha, login);
 			if(farmacia != null) {
@@ -64,7 +64,7 @@ public class LoginFarmaciaBean implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro!", "Email ou Senha Incorretos!"));
 		}
 		return null;
-	}
+	}*/
 	
 	public String Deslogar() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

@@ -2,37 +2,53 @@ package bean;
 
 import java.io.Serializable;
 
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import Service.EnderecoFarmaciaService;
+import exception.ValidacaoException;
 import model.entity.EnderecoFarmacia;
 
 @Named
-@ViewScoped
-public class EnderecoFarmaciaBean implements Serializable{
-	
-    private static final long serialVersionUID = 1L;
-    
-    @Inject
+@RequestScoped
+public class EnderecoFarmaciaBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Inject
 	private EnderecoFarmacia EnderecoFarmacia;
-	
-    @Inject
-	private EnderecoFarmaciaService service;
-	
+
+	@Inject
+	private EnderecoFarmaciaService endFarmaciaService;
+
+	public EnderecoFarmaciaService getEndfarmaciaService() {
+		return endFarmaciaService;
+	}
+
+	public void setEndfarmaciaService(EnderecoFarmaciaService endfarmaciaService) {
+		endFarmaciaService = endfarmaciaService;
+	}
+
 	public EnderecoFarmacia getEnderecoFarmacia() {
 		return EnderecoFarmacia;
 	}
+
 	public void setEnderecoFarmacia(EnderecoFarmacia enderecoFarmacia) {
 		EnderecoFarmacia = enderecoFarmacia;
 	}
-	public EnderecoFarmaciaService getService() {
-		return service;
+
+	public void cadastrarEdereco() throws Exception {
+		try {
+			endFarmaciaService.cadastrarEndereco(EnderecoFarmacia);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro Realizado Com Sucesso!"));
+		} catch (ValidacaoException v) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro", "Erro no Cadastro"));
+		}
+
 	}
-	public void setService(EnderecoFarmaciaService service) {
-		this.service = service;
-	}
-	
-	
+
 }
