@@ -23,12 +23,12 @@
 				<p:inputText id="iptpesquisa" placeholder="Pesquisar..."
 					value="#{pesquisaProdutoBean.nomeProduto}"
 					style="width:300px; height:30px; border: 2px solid #40E0D0; border-radius:10px" />
-			<div id="icon-pesquisa">
-			<h:commandLink action="#{pesquisaProdutoBean.listarProdutos}">
-					<img src="./resources/img/lupa.png" />
-				</h:commandLink>
-			</div>		
-			
+				<div id="icon-pesquisa">
+					<h:commandLink action="#{pesquisaProdutoBean.listarProdutos}">
+						<img src="./resources/img/lupa.png" />
+					</h:commandLink>
+				</div>
+
 			</div>
 
 			<div id="container-carrinho">
@@ -38,11 +38,21 @@
 
 			<div id="container-btns">
 				<p:commandButton id="btnentrar"
+					rendered="#{configurationElements.UsuarioCadastrado()}"
 					onclick="PF('opcoesLogin').show(); return false;" value="Entrar" />
-					
+
 				<p:commandButton id="btncadastro"
+					rendered="#{configurationElements.UsuarioCadastrado()}"
 					onclick="PF('opcoesCadastro').show(); return false;"
 					value="Criar Conta" />
+				<h:form>
+				<p:growl id = "massages" showDetail = "true"/>					
+				<p:menuButton value = "#{loginBean.cliente.nome}" 
+				rendered="#{configurationElements.menuusuario()}">
+					<p:menuitem value = " Perfil"/>
+					<p:menuitem value = " Sair"/>
+				</p:menuButton>	
+				</h:form>					
 			</div>
 		</h:form>
 	</div>
@@ -50,8 +60,8 @@
 	<div id="modalentrar">
 		<p:dialog widgetVar="opcoesLogin" styleClass="dialog" width="350"
 			height="160" draggable="false" header="Entrar como : " modal="false"
-			resizable="false">
-			
+			resizable="false ">
+
 			<a href="LoginCliente.xhtml"><img id="img-usuario-login"
 				src="./resources/img/login_user.png" alt="Cliente" /> </a>
 
@@ -66,12 +76,10 @@
 		<p:dialog widgetVar="opcoesCadastro" styleClass="dialog" width="350"
 			height="160" draggable="false" header="Criar conta como : "
 			modal="false" resizable="false">
-			
+
 			<a href="CadastroCliente.xhtml"> <img id="img-usuario-login"
 				src="./resources/img/adicionar_user.png" alt="Cliente" />
 			</a>
-
-
 			<a href="CadastroFarmacia.xhtml"> <img id="img-farmacia-login"
 				src="./resources/img/icone_farmacia.png" alt="Farmacia" />
 			</a>

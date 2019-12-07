@@ -1,8 +1,6 @@
 package dao;
 
 import java.io.Serializable;
-
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,74 +11,60 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import model.entity.Farmacia;
+
+import model.entity.Usuario;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class FarmaciaDao implements Serializable{
-	
+public class UsuarioDao implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	@PersistenceContext(unitName = "farmanet")
-	private EntityManager manager; 
-	private Dao<Farmacia> dao;
+	private EntityManager manager;
 	
+	private Dao<Usuario> dao;
 	
-	public FarmaciaDao() {}
-
-	public FarmaciaDao(EntityManager manager){
-		dao = new Dao<Farmacia>(manager, Farmacia.class);
+	public UsuarioDao(){}
+	
+	public UsuarioDao(EntityManager manager){
+		dao = new Dao<Usuario>(manager, Usuario.class);
 	}
-
+	
 	@PostConstruct
 	private void initDao() {
-		this.dao = new Dao<Farmacia>(manager, Farmacia.class);
+		this.dao = new Dao<Usuario>(manager, Usuario.class);
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void adiciona(Farmacia t) {
+	public void adiciona(Usuario t)  {
 		dao.adiciona(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remove(Farmacia t) throws Exception {
+	public void remove(Usuario t) throws Exception {
 		dao.remove(t);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Farmacia atualiza(Farmacia t) throws Exception {
+	public Usuario atualiza(Usuario t) throws Exception {
 		return dao.atualiza(t);
 	}
 
-	public List<Farmacia> listaTodos() {
+	public List<Usuario> listaTodos() {
 		return dao.listaTodos();
 	}
 
-	public Farmacia buscaPorId(Integer id) {
+	public Usuario buscaPorId(Integer id) {
 		return dao.buscaPorId(id);
 	}
 	
-	public Farmacia loginFarmacia(String senha , String login)  {
-		try {
-			String sql = "select f from Farmacia f where f.senha =:senha and f.login =:login";
-			TypedQuery<Farmacia> query = manager.createQuery(sql , Farmacia.class);
-			query.setParameter("senha",senha);
-			query.setParameter("login",login);
-			Farmacia farmacia = query.getSingleResult();
-			if(farmacia != null && farmacia.getLogin().equals(login) && farmacia.getSenha().equals(senha)) {
-				return farmacia;
-			}
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}	
-		return null;
-	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();
 		try{
-			String sql = "Delete From Farmacia f Where f.id = :idFarmacia";
+			String sql = "Delete From Usuario u Where u.id_usuario = :idUsuario";
 			Query query = manager.createQuery(sql);
-			query.setParameter("idFarmacia",id);
+			query.setParameter("idUsuario",id);
 			query.executeUpdate();
 			manager.getTransaction().commit();
 			return true;
@@ -88,6 +72,19 @@ public class FarmaciaDao implements Serializable{
 			manager.getTransaction().rollback();
 			throw e;
 		}
+		
 	}
 
+	public Usuario getUsuarioByLoginSenha(String login, String senha) {
+		try {
+			String hql = "from Usuario u where u.login = :login and u.senha = :senha";
+			TypedQuery<Usuario> query = manager.createNamedQuery(hql, Usuario.class);
+			query.setParameter("login", login);
+			query.setParameter("senha", senha);
+			return query.getSingleResult();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

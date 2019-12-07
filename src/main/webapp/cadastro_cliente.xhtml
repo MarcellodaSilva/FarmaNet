@@ -11,8 +11,8 @@
 	</h:head>
 
 
-	<ui:define name="content" >
-		<h:form id="cadastroCliente">
+	<ui:define name="content">
+		<h:form id="cadastroCliente" rendered="#{clienteBean.validar}">
 
 			<div class="container-formulario">
 				<fieldset id="fildset">
@@ -44,16 +44,15 @@
 
 						<h:outputLabel for="iptemail" value="Email" />
 						<h:message for="iptemail" />
-						<h:inputText id="iptemail" value="#{clienteBean.cliente.login}"
+						<h:inputText id="iptemail" value="#{clienteBean.usuario.login}"
 							required="true" style="width: 420px; max-height:22px" />
 
 						<h:outputLabel for="iptsenha" value="Senha" />
 						<h:message for="iptsenha" />
-						<h:inputSecret id="iptsenha" value="#{clienteBean.cliente.senha}"
+						<h:inputSecret id="iptsenha" value="#{clienteBean.usuario.senha}"
 							style="width: 320px; max-height:22px" required="true" />
 
-						<h:commandButton value="Cadastrar"
-							style="width:120px; height:30px"
+						<h:commandButton value="Avançar" style="width:120px; height:30px"
 							action="#{clienteBean.adicionarCliente}" />
 
 					</h:panelGrid>
@@ -61,6 +60,48 @@
 			</div>
 
 		</h:form>
+
+
+		<h:form rendered="#{clienteBean.validar}">
+			<fieldset id="fildset">
+				<legend>Cadastro de Endereço</legend>
+				<h:panelGrid columns="1">
+					<h:outputLabel for="cep" value="CEP: " />
+					<h:message for="cep" />
+					<h:inputText id="cep"
+						value="#{enderecoCLienteBean.enderecoCliente.cep}"
+						style="max-height:22px" />
+
+					<h:outputLabel for="rua" value="Endereço: " />
+					<h:message for="rua" />
+					<h:inputText id="rua"
+						value="#{enderecoCLienteBean.enderecoCliente.rua}"
+						style="width: 320px; max-height:22px" />
+
+					<h:outputLabel for="numero" value="Número: " />
+					<h:message for="numero" />
+					<h:inputText id="numero"
+						value="#{enderecoCLienteBean.enderecoCliente.numero}"
+						style="width: 50px;max-height:22px" />
+
+					<h:outputLabel for="bairro" value="Bairro: " />
+					<h:message for="bairro" />
+					<h:inputText id="bairro"
+						value="#{enderecoCLienteBean.enderecoCliente.bairro}"
+						style="width: 250px; max-height:22px" />
+
+					<h:outputLabel for="cidade" value="Cidade: " />
+					<h:message for="cidade" />
+					<h:inputText id="cidade"
+						value="#{enderecoCLienteBean.enderecoCliente.cidade}"
+						style="width: 270px; max-height:22px" />
+
+					<h:commandButton id="enderecoCliente" value="Cadastrar Endereço"
+						action="#{enderecoCLienteBean.cadastrarEdereco}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 

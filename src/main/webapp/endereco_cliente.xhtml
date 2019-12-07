@@ -7,38 +7,36 @@
       
     <h:head>
         <title>Endereco cliente</title>
+        <h:outputStylesheet library="css" name="CadClientecss.css"/>
     </h:head>
     <h:body>
-    <h:form>
-       <h:outputText id="titulo" value="Cadastrar endereço da farmacia" style="font-weight: bold;"/>
-       <h:panelGrid columns="3">
-       <h:outputLabel for="nome" value="Nome Completo "/>
-       <h:inputText id="nome" value="#{}"/>
-       
-       <h:outputLabel for="cep" value="CEP "/>
-       <h:inputText id="cep" value="#{}"/>
-       <h:commandButton id="validar" value="Validar CEP" action="#{}"/>
+  <fieldset id="fildset">
+  <legend>Cadastro de Endereço</legend>
+  <h:form>
+<h:panelGrid columns="1">
+<h:outputLabel for="cep" value="CEP: "/>
+  <h:message for="cep"/>
+  <h:inputText id="cep" value="#{enderecoCLienteBean.enderecoCliente.cep}"  style="max-height:22px"/>
          
-       <h:outputLabel for="rua" value="Endereço "/>
-       <h:inputText id="rua" value="#{}"/>
+  <h:outputLabel for="rua" value="Endereço: "/>
+  <h:message for="rua"/>
+  <h:inputText id="rua" value="#{enderecoCLienteBean.enderecoCliente.rua}" style="width: 320px; max-height:22px"/>
           
-       <h:outputLabel for="numero" value="Número "/>
-       <h:inputText id="numero" value="#{}"/>
-       
-       <h:outputLabel for="complemento" value="Complemento (opcional) "/>
-       <h:inputText id="complemento" value="#{}"/>
-           
-       <h:outputLabel for="bairro" value="Bairro "/>
-       <h:inputText id="bairro" value="#{}"/>
-       
-       <h:outputLabel for="cidade" value="Cidade "/>
-       <h:inputText id="cidade" value="#{}"/>
-       
-       <h:outputLabel for="estado" value="Estado "/>
-       <h:inputText id="estado" value="#{}"/>
-            
-       <h:commandButton id="enderecoCliente" value="Enviar para este endereço" action="#{}"/>
-       </h:panelGrid>
+  <h:outputLabel for="numero" value="Número: "/>
+  <h:message for="numero"/>
+  <h:inputText id="numero" value="#{enderecoCLienteBean.enderecoCliente.numero}" style="width: 50px;max-height:22px"/>
+      
+  <h:outputLabel for="bairro" value="Bairro: "/>
+  <h:message for="bairro"/>
+  <h:inputText id="bairro" value="#{enderecoCLienteBean.enderecoCliente.bairro}" style="width: 250px; max-height:22px"/>
+  
+  <h:outputLabel for="cidade" value="Cidade: "/>
+  <h:message for="cidade"/>
+  <h:inputText id="cidade" value="#{enderecoCLienteBean.enderecoCliente.cidade}"  style="width: 270px; max-height:22px"/>
+  
+  <h:commandButton id="enderecoCliente" value="Cadastrar Endereço" action="#{enderecoCLienteBean.cadastrarEdereco}"/>
+</h:panelGrid>
     </h:form>
+  </fieldset>    
     </h:body>
 </html>

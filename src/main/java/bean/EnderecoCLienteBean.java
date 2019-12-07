@@ -2,15 +2,18 @@ package bean;
 
 import java.io.Serializable;
 
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import Service.EnderecoClienteService;
+import exception.ValidacaoException;
 import model.entity.EnderecoCliente;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class EnderecoCLienteBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,7 +22,7 @@ public class EnderecoCLienteBean implements Serializable {
 	private EnderecoCliente enderecoCliente;
 	
 	@Inject
-	private EnderecoClienteService service;
+	private EnderecoClienteService endClienteservice;
 	
 	public EnderecoCliente getEnderecoCliente() {
 		return enderecoCliente;
@@ -27,12 +30,21 @@ public class EnderecoCLienteBean implements Serializable {
 	public void setEnderecoCliente(EnderecoCliente enderecoCliente) {
 		this.enderecoCliente = enderecoCliente;
 	}
-	public EnderecoClienteService getService() {
-		return service;
-	}
-	public void setService(EnderecoClienteService service) {
-		this.service = service;
-	}
 	
-	
+	public EnderecoClienteService getEndClienteservice() {
+		return endClienteservice;
+	}
+	public void setEndClienteservice(EnderecoClienteService endClienteservice) {
+		this.endClienteservice = endClienteservice;
+	}
+	public void cadastrarEdereco() throws Exception {
+		try {
+			endClienteservice.cadastrarEndereco(enderecoCliente);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro Realizado Com Sucesso!"));
+		} catch (ValidacaoException v) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro", "Erro no Cadastro"));
+		}
+
+	}
 }

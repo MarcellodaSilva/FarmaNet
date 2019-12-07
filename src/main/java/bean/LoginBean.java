@@ -1,17 +1,17 @@
 package bean;
 
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import Service.ClienteService;
+
 import Service.LoginService;
 import model.entity.Cliente;
 import model.entity.Farmacia;
-
-import java.io.Serializable;
+import model.entity.Usuario;
 
 @Named
 @RequestScoped
@@ -23,6 +23,7 @@ public class LoginBean implements Serializable {
 	private Cliente cliente;
 	private Farmacia farmacia;
 	private String login;
+	private String senha;
 
 	public Cliente getCliente() {
 		return cliente;
@@ -39,8 +40,6 @@ public class LoginBean implements Serializable {
 	public void setFarmacia(Farmacia farmacia) {
 		this.farmacia = farmacia;
 	}
-
-	private String senha;
 
 	public String getLogin() {
 		return login;
@@ -68,30 +67,56 @@ public class LoginBean implements Serializable {
 
 	public String logar() {
 		try {
-			Object user = loginService.logar(senha, login);
-			FacesContext sessao = FacesContext.getCurrentInstance();
+			Usuario user = loginService.logar(senha, login);
+			FacesContext sessao = FacesContext.getCurrentInstance(); 
 			if (user instanceof Cliente) {
 				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
 				cliente = (Cliente) user;
-				return "perfil_cliente?faces-redirect=true";
+				return "perfil_cliente";
 			} else if (user instanceof Farmacia) {
-				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
+				sessao.getExternalContext().getSessionMap().put("Perfil", (Farmacia) user);
 				farmacia = (Farmacia) user;
-				return "perfil_farmacia?faces-redirect=true";
+				return "perfil_farmacia";
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Email ou Senha Incorretos."));
 			}
 
 		} catch (Exception v) {
-			v.getMessage();
+			v.printStackTrace();
 		}
 		return null;
 
 	}
 
+	/*
+	public String logar() {
+		try {
+			Object user = loginService.logar(senha, login);
+			FacesContext sessao = FacesContext.getCurrentInstance(); 
+			if (user instanceof Cliente) {
+				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
+				cliente = (Cliente) user;
+				return "perfil_cliente";
+			} else if (user instanceof Farmacia) {
+				sessao.getExternalContext().getSessionMap().put("Perfil", (Farmacia) user);
+				farmacia = (Farmacia) user;
+				return "perfil_farmacia";
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Email ou Senha Incorretos."));
+			}
+
+		} catch (Exception v) {
+			v.printStackTrace();
+		}
+		return null;
+
+	}
+	*/
+
 	public String Deslogar() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "pagina_inicial.xhtml?faces-redirect=true";
+		return "pagina_inicial";
 	}
 }

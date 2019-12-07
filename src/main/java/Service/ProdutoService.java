@@ -59,11 +59,10 @@ public class ProdutoService implements Serializable {
 		boolean result = dao.removePorID(id);
 		return result;
 	}
-        
-        public List<Produto>pesquisar(String produto) throws ValidacaoException{
-          return dao.pesquisar(produto);
-           
-        }
+
+	public List<Produto> pesquisar(String produto) throws ValidacaoException {
+		return dao.pesquisar(produto);
+	}
 
 	public void validaProduto(Produto produto) throws ValidacaoException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

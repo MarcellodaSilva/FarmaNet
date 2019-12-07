@@ -1,5 +1,6 @@
 body{
 	margin:0;
+	
 }
 #bottom  {
 	position:relative;
@@ -12,12 +13,14 @@ body{
 	background-color: #485460;
 	height: 185px;
 	width: 100%;
+	
 }
 
 .footer-bot{
 	background-color: #2d3436;
 	height: 45px;
 	width: 100%;
+	
 }
 
 

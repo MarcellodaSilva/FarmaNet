@@ -28,7 +28,7 @@ public class ClienteDao implements Serializable{
 	
 	public ClienteDao() {}
 	
-	public void ClienteDAO(EntityManager manager){
+	public ClienteDao(EntityManager manager){
 		dao = new Dao<Cliente>(manager, Cliente.class);
 	}
 	
@@ -64,7 +64,7 @@ public class ClienteDao implements Serializable{
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();
 		try{
-			String sql = "Delete From Cliente c Where c.id_cliente = :idCliente";
+			String sql = "Delete From Cliente c Where c.id = :idCliente";
 			Query query = manager.createQuery(sql);
 			query.setParameter("idCliente",id);
 			query.executeUpdate();
