@@ -69,12 +69,12 @@ public class LoginBean implements Serializable {
 		try {
 			Usuario user = loginService.logar(senha, login);
 			FacesContext sessao = FacesContext.getCurrentInstance(); 
-			if (user instanceof Cliente) {
-				sessao.getExternalContext().getSessionMap().put("Perfil", (Cliente) user);
+			if (user.getTipo().equals("Pf")) {
+				sessao.getExternalContext().getSessionMap().put("Pf", (Cliente) user);
 				cliente = (Cliente) user;
 				return "perfil_cliente";
-			} else if (user instanceof Farmacia) {
-				sessao.getExternalContext().getSessionMap().put("Perfil", (Farmacia) user);
+			} else if (user.getTipo().equals("Pj")) {
+				sessao.getExternalContext().getSessionMap().put("Pj", (Farmacia) user);
 				farmacia = (Farmacia) user;
 				return "perfil_farmacia";
 			} else {

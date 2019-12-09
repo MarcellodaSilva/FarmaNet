@@ -1,7 +1,11 @@
 
 package model.entity;
 
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -10,9 +14,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
-@Entity(name="Farmacia")
+@Entity
 @Table(name = "farmacia")
-public class Farmacia extends Usuario  {
+@DiscriminatorValue(value = "Pj")
+public class Farmacia extends Usuario  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -58,21 +63,7 @@ public class Farmacia extends Usuario  {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	
 
 	public String getTelefone01() {
 		return telefone01;

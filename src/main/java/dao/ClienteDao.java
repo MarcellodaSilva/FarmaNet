@@ -80,7 +80,7 @@ public class ClienteDao implements Serializable{
 		t.setCompralist(compra);
 		dao.adiciona(t);
 	}
-	public Cliente loginCliente(String senha , String login)  {
+	/*public Cliente loginCliente(String senha , String login)  {
 		try {
 			String sql = "select c from Cliente c where c.senha =:senha and c.login =:login";
 			TypedQuery<Cliente> query = manager.createQuery(sql , Cliente.class);
@@ -95,7 +95,7 @@ public class ClienteDao implements Serializable{
 		}	
 		return null;
 			
-	}
+	}*/
 	
 
 }

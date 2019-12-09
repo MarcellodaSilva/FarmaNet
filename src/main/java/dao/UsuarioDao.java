@@ -16,27 +16,28 @@ import model.entity.Usuario;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class UsuarioDao implements Serializable{
+public class UsuarioDao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@PersistenceContext(unitName = "farmanet")
 	private EntityManager manager;
-	
+
 	private Dao<Usuario> dao;
-	
-	public UsuarioDao(){}
-	
-	public UsuarioDao(EntityManager manager){
+
+	public UsuarioDao() {
+	}
+
+	public UsuarioDao(EntityManager manager) {
 		dao = new Dao<Usuario>(manager, Usuario.class);
 	}
-	
+
 	@PostConstruct
 	private void initDao() {
 		this.dao = new Dao<Usuario>(manager, Usuario.class);
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void adiciona(Usuario t)  {
+	public void adiciona(Usuario t) {
 		dao.adiciona(t);
 	}
 
@@ -57,34 +58,38 @@ public class UsuarioDao implements Serializable{
 	public Usuario buscaPorId(Integer id) {
 		return dao.buscaPorId(id);
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();
-		try{
+		try {
 			String sql = "Delete From Usuario u Where u.id_usuario = :idUsuario";
 			Query query = manager.createQuery(sql);
-			query.setParameter("idUsuario",id);
+			query.setParameter("idUsuario", id);
 			query.executeUpdate();
 			manager.getTransaction().commit();
 			return true;
-		}catch(RuntimeException e){
+		} catch (RuntimeException e) {
 			manager.getTransaction().rollback();
 			throw e;
 		}
-		
+
 	}
 
 	public Usuario getUsuarioByLoginSenha(String login, String senha) {
 		try {
-			String hql = "from Usuario u where u.login = :login and u.senha = :senha";
+			String hql = "Select u from Usuario u where u.login = :login and u.senha = :senha";
 			TypedQuery<Usuario> query = manager.createNamedQuery(hql, Usuario.class);
 			query.setParameter("login", login);
 			query.setParameter("senha", senha);
-			return query.getSingleResult();
-		}catch(Exception e) {
+			Usuario user = query.getSingleResult();
+			if (user != null && user.getLogin().equals(login) && user.getSenha().equals(senha)) {
+				return user;
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 }

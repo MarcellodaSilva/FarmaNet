@@ -1,9 +1,12 @@
 
 package model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -13,9 +16,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-@Entity(name = "Cliente")
+@RequestScoped
+@Entity
 @Table(name = "cliente")
-public class Cliente extends Usuario {
+@DiscriminatorValue(value = "Pf")
+public class Cliente extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -95,23 +100,6 @@ public class Cliente extends Usuario {
 
 	public void setHistorico(Historico historico) {
 		this.historico = historico;
-	}
-	
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public List<Compra> getCompralist() {

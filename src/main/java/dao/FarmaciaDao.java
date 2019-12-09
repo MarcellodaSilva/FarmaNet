@@ -59,7 +59,7 @@ public class FarmaciaDao implements Serializable{
 		return dao.buscaPorId(id);
 	}
 	
-	public Farmacia loginFarmacia(String senha , String login)  {
+	/*public Farmacia loginFarmacia(String senha , String login)  {
 		try {
 			String sql = "select f from Farmacia f where f.senha =:senha and f.login =:login";
 			TypedQuery<Farmacia> query = manager.createQuery(sql , Farmacia.class);
@@ -73,7 +73,7 @@ public class FarmaciaDao implements Serializable{
 			System.out.println(e.getMessage());
 		}	
 		return null;
-	}
+	}*/
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean removePorID(Integer id) {
 		manager.getTransaction().begin();

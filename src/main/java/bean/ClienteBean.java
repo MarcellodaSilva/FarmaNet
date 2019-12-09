@@ -24,10 +24,6 @@ public class ClienteBean implements Serializable {
 	private ClienteService clienteService;
 	@Inject
 	private Cliente cliente;
-	@Inject
-	private Usuario usuario;
-	@Inject
-	private UsuarioService usuarioService;
 	private boolean booleanoFormCliente;
 	private boolean booleanoFormEndereco;
 
@@ -47,22 +43,6 @@ public class ClienteBean implements Serializable {
 
 	public void setBooleanoFormEndereco(boolean booleanoFormEndereco) {
 		this.booleanoFormEndereco = booleanoFormEndereco;
-	}
-
-	public UsuarioService getUsuarioService() {
-		return usuarioService;
-	}
-
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Cliente getCliente() {
